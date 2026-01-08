@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SmartSuggest - Feedback</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Feedback form styled to match main.css */
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 60px auto 80px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+            color: var(--primary);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .form-header p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        button {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .success {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: #27ae60;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #27ae60;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .error {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #e74c3c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-film"></i>
+            <span>SmartSuggest</span>
+        </div>
+        <ul>
+            <li><a href="main.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="feedback.html" class="active"><i class="fas fa-comment"></i> Feedback</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>We Value Your Feedback</h2>
+            <p>Please share your thoughts and help us improve SmartSuggest.</p>
+        </div>
+        <form id="feedback-form" method="POST" action="submit_feedback.php" novalidate>
+
+            <div class="form-group">
+                <label for="name">Name <span style="color: var(--accent);">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email <span style="color: var(--accent);">*</span></label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+
+<div>
+    <label for="rating" class="form-label">Reports<span style="color: var(--accent);">*</span></label>
+    <select class="form-select" id="rating" name="rating" required>
+        <option value="">-- Select your issue --</option>
+        <option value="suggestions">Suggestions Report</option>
+        <option value="bug">Bug Report</option>
+        <option value="content accuracy">Content Accuracy</option>
+        <option value="other">other</option>
+    </select>
+</div>
+
+            <div class="form-group">
+                <label for="comments">Comments</label>
+                <textarea id="comments" name="comments" placeholder="please type your isuues here..."></textarea>
+            </div>
+
+            <button type="submit"><i class="fas fa-paper-plane"></i> Submit Feedback</button>
+        </form>
+        <div id="form-message"></div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('feedback-form');
+    const formMessage = document.getElementById('form-message');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        formMessage.textContent = '';
+        formMessage.className = '';
+
+        if (!form.name.value.trim() || !form.email.value.trim() || !form.rating.value) {
+            formMessage.textContent = 'Please fill in all required fields.';
+            formMessage.className = 'error';
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) throw new Error('Network response was not ok');
+
+            const result = await response.json();
+
+            if (result.success) {
+                formMessage.textContent = 'Thank you for your feedback! Redirecting to home...';
+                formMessage.className = 'success';
+                form.reset();
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 2500);
+            } else {
+                formMessage.textContent = result.message || 'Failed to submit feedback.';
+                formMessage.className = 'error';
+            }
+        } catch (error) {
+            formMessage.textContent = 'An error occurred. Please try again later.';
+            formMessage.className = 'error';
+            console.error('Feedback submission error:', error);
+        }
+    });
+</script>
+</body>
+</html>
