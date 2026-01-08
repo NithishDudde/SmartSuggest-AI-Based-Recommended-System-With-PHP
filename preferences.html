@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSuggest - Preferences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>SmartSuggest</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="preference-container">
+            <div class="form-header">
+                <h2>Tell Us What You Like</h2>
+                <p>Select your favorite movie genres to get personalized recommendations</p>
+            </div>
+            
+            <div class="preference-grid">
+                <div class="preference-item" onclick="togglePreference(this, 'action')">
+                    <i class="fas fa-fire"></i>
+                    <span>Action</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'comedy')">
+                    <i class="fas fa-laugh"></i>
+                    <span>Comedy</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'drama')">
+                    <i class="fas fa-theater-masks"></i>
+                    <span>Drama</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'sci-fi')">
+                    <i class="fas fa-rocket"></i>
+                    <span>Sci-Fi</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'horror')">
+                    <i class="fas fa-ghost"></i>
+                    <span>Horror</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'romance')">
+                    <i class="fas fa-heart"></i>
+                    <span>Romance</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'thriller')">
+                    <i class="fas fa-microphone-alt"></i>
+                    <span>Thriller</span>
+                </div>
+                <div class="preference-item" onclick="togglePreference(this, 'fantasy')">
+                    <i class="fas fa-dragon"></i>
+                    <span>Fantasy</span>
+                </div>
+            </div>
+            
+            <button onclick="savePreferences()"><i class="fas fa-check"></i> Save Preferences</button>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        // if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+        //     window.location.href = 'main.html';
+        // }
+
+        // Toggle preference selection
+        function togglePreference(element, preference) {
+            element.classList.toggle('selected');
+        }
+
+        // Save user preferences
+        function savePreferences() {
+            const selectedItems = document.querySelectorAll('.preference-item.selected');
+            const userPreferences = Array.from(selectedItems).map(item => item.querySelector('span').textContent.toLowerCase());
+            
+            if (userPreferences.length === 0) {
+                alert('Please select at least one genre preference');
+                return;
+            }
+            
+            // Store preferences in sessionStorage
+            sessionStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+            
+            // Redirect to main page
+            window.location.href = 'main.html';
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userPreferences');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
