@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SmartSuggest - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- TailwindCSS for button styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>SmartSuggest</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Welcome To Smart Suggest</h2>
+                <p>Click here to access personalized movie recommendations</p>
+            </div>
+
+            <!-- Updated button redirecting to main.html -->
+            <div class="flex items-center justify-center mt-6">
+                <div class="relative group">
+                    <a href="log.html" 
+                        class="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95">
+                        <span
+                            class="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                        </span>
+                        <span class="relative z-10 block px-6 py-3 rounded-xl bg-gray-950">
+                            <div class="relative z-10 flex items-center space-x-2">
+                                <span class="transition-all duration-500 group-hover:translate-x-1">Let's get started</span>
+                                <svg class="w-6 h-6 transition-transform duration-500 group-hover:translate-x-1"
+                                    fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" />
+                                </svg>
+                            </div>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
