@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SmartSuggest - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>SmartSuggest</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Smart Suggest Login</h2>
+                <p>Login here to get Smart Movie Recommendations</p>
+            </div>
+
+            <form id="login-form" method="post" action="login.php">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required placeholder="Enter your email" autocomplete="email" />
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="pass" required placeholder="Enter your password" autocomplete="current-password" />
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+                <button type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <p style="margin-top: 20px; text-align: center;">
+                    Don't have an account? <a href="register.html" style="color: var(--secondary);">Register here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
